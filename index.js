@@ -33,6 +33,8 @@ io.of(/^\/instance-.*$/).on("connection", (socket) => {
 
     preserveInstance(socket, instance);
 
+    socket.on('message', console.log);
+
     socket.on('item-found', item => {
         if (items.indexOf(item) === -1) {
             items.push(item);
