@@ -26,7 +26,7 @@ workspaces.on("connection", (socket) => {
             "sockets": []
         };
     }
-    console.log(`Socket ${socket.id} connected (${instance}`);
+    console.log(`Socket ${socket.id} connected (${instance})`);
     const items = connections[instance].items;
     const sockets = connections[instance].sockets;
 
@@ -38,6 +38,7 @@ workspaces.on("connection", (socket) => {
 
     socket.on('item-found', item => {
         if (items.indexOf(item) === -1) {
+            console.log(`${instance}: found item ${item}.`);
             items.push(item);
             if (item === "carte_grise") {
                 socket.emit('allow-monitoring');
