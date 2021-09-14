@@ -40,9 +40,9 @@ workspaces.on("connection", (socket) => {
         if (items.indexOf(item) === -1) {
             console.log(`${instance}: found item ${item}.`);
             items.push(item);
-            if (item === "carte_grise") {
-                socket.emit('allow-monitoring');
-            }
+        }
+        if (item === "carte_grise") {
+            socket.emit('allow-monitoring');
         }
     });
 
