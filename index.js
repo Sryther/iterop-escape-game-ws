@@ -42,7 +42,7 @@ workspaces.on("connection", (socket) => {
             items.push(item);
         }
         if (item === "carte_grise") {
-            socket.emit('allow-monitoring');
+            socket.emit('allow-monitoring', null);
         }
     });
 
