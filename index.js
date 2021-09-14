@@ -18,6 +18,7 @@ const preserveInstance = (socket, instance) => {
 
 const workspaces = io.of(/^\/instance-.*$/);
 workspaces.on("connection", (socket) => {
+    console.log(socket)
     const namespace = socket.nsp;
     const instance = namespace.replace(/^\/instance-/, "");
     if (connections[instance] === undefined) {
