@@ -16,7 +16,8 @@ const preserveInstance = (socket, instance) => {
     }, 10000);
 }
 
-io.of(/^\/instance-.*$/).on("connection", (socket) => {
+const workspaces = io.of(/^\/instance-.*$/);
+workspaces.on("connection", (socket) => {
     const namespace = socket.nsp;
     const instance = namespace.replace(/^\/instance-/, "");
     if (connections[instance] === undefined) {
@@ -47,6 +48,11 @@ io.of(/^\/instance-.*$/).on("connection", (socket) => {
     socket.on("disconnect", () => {
         sockets.splice(sockets.indexOf(socket), 1)
     });
+});
+
+workspaces.use((socket, next) => {
+    // ensure the user has access to the workspace
+    next();
 });
 
 httpServer.listen(3000);
