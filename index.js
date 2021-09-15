@@ -22,7 +22,7 @@ setInterval(() => {
     Object.values(connections).forEach(connection => {
        connection.server.broadcast.emit("shake-it", null);
     });
-}, 50000);
+}, 5 * 60 * 1000);
 
 workspaces.on("connection", (socket) => {
     const namespace = socket.nsp.name;
