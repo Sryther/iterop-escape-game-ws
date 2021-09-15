@@ -36,6 +36,11 @@ workspaces.on("connection", (socket) => {
 
     socket.on('message', console.log);
 
+    socket.on("pamela-remove", (joueurs) => {
+        const newJoueurs = joueurs.replace(" , Pamela Anderson", "")
+        socket.broadcast.emit('set-joueurs', newJoueurs);
+    });
+
     socket.on('item-found', item => {
         if (items.indexOf(item) === -1) {
             console.log(`${instance}: found item ${item}.`);
