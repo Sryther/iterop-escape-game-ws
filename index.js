@@ -36,7 +36,7 @@ workspaces.on("connection", (socket) => {
 
     socket.on('message', console.log);
 
-    socket.on("pamela-remove", (joueurs) => {
+    socket.on("pamela-removed", (joueurs) => {
         const newJoueurs = joueurs.replace(" , Pamela Anderson", "")
         socket.broadcast.emit('set-joueurs', newJoueurs);
     });
