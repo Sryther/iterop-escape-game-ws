@@ -17,13 +17,21 @@ const preserveInstance = (socket, instance) => {
 }
 
 const workspaces = io.of(/^\/instance-.*$/);
+
+setInterval(() => {
+    Object.values(connections).forEach(connection => {
+       connection.server.broadcast.emit("shake-it", null);
+    });
+}, 5000);
+
 workspaces.on("connection", (socket) => {
     const namespace = socket.nsp.name;
     const instance = namespace.replace(/^\/instance-/, "");
     if (connections[instance] === undefined) {
         connections[instance] = {
             "items": [],
-            "sockets": []
+            "sockets": [],
+            "server": socket
         };
     }
     console.log(`Socket ${socket.id} connected (${instance})`);
