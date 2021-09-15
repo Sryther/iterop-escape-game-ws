@@ -41,6 +41,14 @@ workspaces.on("connection", (socket) => {
         socket.broadcast.emit('set-joueurs', newJoueurs);
     });
 
+    socket.on("click-sync", () => {
+        socket.broadcast.emit('clicked-sync', null);
+    });
+
+    socket.on("unclick-sync", () => {
+        socket.broadcast.emit('unclicked-sync', null);
+    });
+
     socket.on('item-found', item => {
         if (items.indexOf(item) === -1) {
             console.log(`${instance}: found item ${item}.`);
