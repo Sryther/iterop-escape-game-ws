@@ -67,6 +67,10 @@ workspaces.on("connection", (socket) => {
         }
     });
 
+    socket.on('synced', () => {
+        socket.broadcast.emit('sync-ok', null);
+    })
+
     socket.on("disconnect", () => {
         sockets.splice(sockets.indexOf(socket), 1)
     });
